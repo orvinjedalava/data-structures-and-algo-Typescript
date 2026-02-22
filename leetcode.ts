@@ -14,3 +14,36 @@ export function mergeAlternately(word1: string, word2: string): string {
 
     return result.join('');
 };
+
+/* 
+  Analysis
+  The key insight is that if a string x divides both str1 and str2, then:
+
+  The length of x must divide both lengths of str1 and str2
+  x repeated multiple times should equal str1 and str2
+  The largest such string would have length equal to the GCD (Greatest Common Divisor) of the two string lengths.
+
+  Also, a necessary condition is: str1 + str2 === str2 + str1. If this isn't true, there's no common divisor string.
+*/
+export function gcdOfStrings(str1: string, str2: string): string {
+  
+  // If concatenating in different orders gives different results,
+  // there's no common divisor
+  if (str1 + str2 !== str2 + str1) {
+      return "";
+  }
+
+  // Helper function to calculate GCD of two numbers
+  function gcd(a: number, b: number): number {
+      if (b === 0) {
+          return a;
+      }
+      return gcd(b, a % b);
+  }
+
+  // The length of the GCD string is the GCD of both string lengths
+  const gcdLength = gcd(str1.length, str2.length);
+
+  // return the substring of 0 to gcdlength
+  return str1.substring(0, gcdLength);
+}
