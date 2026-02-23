@@ -1,6 +1,7 @@
 import { 
   mergeAlternately,
-  gcdOfStrings
+  gcdOfStrings,
+  kidsWithCandies
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -37,5 +38,20 @@ describe('gcdOfStrings', () => {
   test('should return "" for "AAAAAB" and "AAA"', () => {
     const result = gcdOfStrings("AAAAB", "AAA");
     expect(result).toBe("");
+  })
+});
+
+describe('kidsWithCandies', () => {
+  test('should return [true,true,true,false,true] for candies [2,3,5,1,3] and extraCandies 3', () => {
+    const result: boolean[] = kidsWithCandies([2,3,5,1,3], 3);
+    expect(result).toEqual([true, true, true, false, true]);
+  });
+  test('should return [true,false,false,false,false] for candies [4,2,1,1,2] and extraCandies 1', () => {
+    const result: boolean[] = kidsWithCandies([4,2,1,1,2], 1);
+    expect(result).toEqual([true, false, false, false, false]);
+  });
+  test('should return [true,false,true] for candies [12,1,12] and extraCandies = 10', () => {
+    const result: boolean[] = kidsWithCandies([12,1,12], 10);
+    expect(result).toEqual([true, false, true]);
   })
 });

@@ -47,3 +47,20 @@ export function gcdOfStrings(str1: string, str2: string): string {
   // return the substring of 0 to gcdlength
   return str1.substring(0, gcdLength);
 }
+
+export function kidsWithCandies(candies: number[], extraCandies: number): boolean[] {
+    // Find the maximum number of candies any kid currently has
+    const maxCandies = Math.max(...candies);
+
+    // Since we know the maximum number of results, we can initialize the result array with the exact length and fill it with false by default.
+    // This way, we avoid unnecessary resizing of the array during the map operation.
+    const result: boolean[] = new Array(candies.length).fill(false);
+    
+    // We use for loop instead of map to avoid creating an intermediate array and to directly set the values in the result array.
+    for (let i:number = 0; i < candies.length; i++)
+    {
+        result[i] = candies[i] + extraCandies >= maxCandies;
+    }
+
+    return result;
+};
