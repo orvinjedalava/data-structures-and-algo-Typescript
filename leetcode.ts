@@ -49,18 +49,72 @@ export function gcdOfStrings(str1: string, str2: string): string {
 }
 
 export function kidsWithCandies(candies: number[], extraCandies: number): boolean[] {
-    // Find the maximum number of candies any kid currently has
-    const maxCandies = Math.max(...candies);
+  // Find the maximum number of candies any kid currently has
+  const maxCandies = Math.max(...candies);
 
-    // Since we know the maximum number of results, we can initialize the result array with the exact length and fill it with false by default.
-    // This way, we avoid unnecessary resizing of the array during the map operation.
-    const result: boolean[] = new Array(candies.length).fill(false);
-    
-    // We use for loop instead of map to avoid creating an intermediate array and to directly set the values in the result array.
-    for (let i:number = 0; i < candies.length; i++)
-    {
-        result[i] = candies[i] + extraCandies >= maxCandies;
-    }
+  // Since we know the maximum number of results, we can initialize the result array with the exact length and fill it with false by default.
+  // This way, we avoid unnecessary resizing of the array during the map operation.
+  const result: boolean[] = new Array(candies.length).fill(false);
+  
+  // We use for loop instead of map to avoid creating an intermediate array and to directly set the values in the result array.
+  for (let i:number = 0; i < candies.length; i++)
+  {
+      result[i] = candies[i] + extraCandies >= maxCandies;
+  }
 
-    return result;
+  return result;
+};
+
+/*
+  Analysis - Can Place Flowers
+  
+  The problem asks us to determine if we can plant n flowers in a flowerbed
+  without placing any two flowers adjacent to each other.
+  
+  Key observations:
+  1. We can plant a flower at position i if:
+     - flowerbed[i] is currently 0 (empty)
+     - flowerbed[i-1] is 0 or doesn't exist (left is empty or we're at start)
+     - flowerbed[i+1] is 0 or doesn't exist (right is empty or we're at end)
+  
+  2. When we plant a flower, we should mark that position as 1 to prevent
+     planting adjacent flowers in subsequent iterations.
+  
+  3. We can stop early if we've already planted n flowers.
+  
+  Time Complexity: O(flowerbed.length) - we traverse the array once
+  Space Complexity: O(1) - we modify the array in place
+*/
+export function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+  // Early return if no flowers need to be planted
+  if (n === 0) {
+      return true;
+  }
+  
+  let planted = 0;
+  
+  for (let i = 0; i < flowerbed.length; i++) {
+      // Check if current position is empty
+      if (flowerbed[i] === 0) {
+          // Check left neighbor (empty or out of bounds)
+          const leftEmpty = i === 0 || flowerbed[i - 1] === 0;
+          
+          // Check right neighbor (empty or out of bounds)
+          const rightEmpty = i === flowerbed.length - 1 || flowerbed[i + 1] === 0;
+          
+          // If both neighbors are empty (or don't exist), we can plant here
+          if (leftEmpty && rightEmpty) {
+              flowerbed[i] = 1; // Plant the flower
+              planted++;
+              
+              // Early exit if we've planted enough flowers
+              if (planted >= n) {
+                  return true;
+              }
+          }
+      }
+  }
+  
+  // Check if we planted enough flowers
+  return planted >= n;
 };

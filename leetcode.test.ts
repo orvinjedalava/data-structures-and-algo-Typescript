@@ -1,7 +1,8 @@
 import { 
   mergeAlternately,
   gcdOfStrings,
-  kidsWithCandies
+  kidsWithCandies,
+  canPlaceFlowers
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -55,3 +56,14 @@ describe('kidsWithCandies', () => {
     expect(result).toEqual([true, false, true]);
   })
 });
+
+describe('canPlaceFlowers', () => {
+  test('should return true for flowerbed [1,0,0,0,1] and n = 1', () => {
+    const result = canPlaceFlowers([1,0,0,0,1], 1);
+    expect(result).toBe(true);
+  });
+  test('should return false for flowerbed [1,0,0,0,1] and n = 2', () => {
+    const result = canPlaceFlowers([1,0,0,0,1], 2);
+    expect(result).toBe(false);
+  })
+})
