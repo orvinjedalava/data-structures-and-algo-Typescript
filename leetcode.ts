@@ -120,3 +120,29 @@ export function canPlaceFlowers(flowerbed: number[], n: number): boolean {
   // Check if we planted enough flowers
   return planted >= n;
 };
+
+export function reverseVowels(s: string): string {
+  const vowels: Set<string> = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
+  const chars: string[] = s.split('');
+  let left: number = 0;
+  let right: number = chars.length - 1;
+
+  while(left < right) {
+    if (vowels.has(chars[left]) && vowels.has(chars[right])) {
+      [chars[left], chars[right]] = [chars[right], chars[left]];
+      left++;
+      right--;
+      
+    }
+
+    if (left < right && !vowels.has(chars[left])) {
+      left++;
+    }
+
+    if (left < right && !vowels.has(chars[right])) {
+      right--;
+    }
+  }
+
+  return chars.join('');
+}

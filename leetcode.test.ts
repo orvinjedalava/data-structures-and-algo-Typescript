@@ -2,7 +2,8 @@ import {
   mergeAlternately,
   gcdOfStrings,
   kidsWithCandies,
-  canPlaceFlowers
+  canPlaceFlowers,
+  reverseVowels,
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -66,4 +67,15 @@ describe('canPlaceFlowers', () => {
     const result = canPlaceFlowers([1,0,0,0,1], 2);
     expect(result).toBe(false);
   })
-})
+});
+
+describe('reverseVowels', () => {
+  test('should return "AceCreIm" for s "IceCreAm"', () => {
+    const result = reverseVowels("IceCreAm");
+    expect(result).toBe("AceCreIm");
+  });
+  test('should return "leotcede" for s "leetcode"', () => {
+    const result = reverseVowels("leetcode");
+    expect(result).toBe("leotcede");
+  });
+});
