@@ -4,6 +4,7 @@ import {
   kidsWithCandies,
   canPlaceFlowers,
   reverseVowels,
+  reverseWords
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -79,3 +80,18 @@ describe('reverseVowels', () => {
     expect(result).toBe("leotcede");
   });
 });
+
+describe('reverseWords', () => {
+  test('should return "blue is sky the" for s "the sky is blue"', () => {
+    const result = reverseWords("the sky is blue");
+    expect(result).toBe("blue is sky the");
+  });
+  test('should return "world hello" for s "   hello world   "', () => {
+    const result = reverseWords("   hello world   ");
+    expect(result).toBe("world hello");
+  });
+  test('should return "example good a" for s "a good   example"', () => {
+    const result = reverseWords("a good   example");
+    expect(result).toBe("example good a");
+  });
+})

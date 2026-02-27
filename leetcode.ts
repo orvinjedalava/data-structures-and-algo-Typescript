@@ -121,6 +121,14 @@ export function canPlaceFlowers(flowerbed: number[], n: number): boolean {
   return planted >= n;
 };
 
+// Analysis - Reverse Vowels of a String
+// The problem asks us to reverse only the vowels in a given string.
+// Key observations:
+// 1. We can use two pointers, one starting from the beginning and one from the end.
+// 2. Move the pointers towards each other, swapping vowels when both pointers point to a vowel.
+// 3. Continue until the pointers meet or cross each other.
+// Time Complexity: O(n) - we traverse the string at most once
+// Space Complexity: O(n) - we use an array to store characters
 export function reverseVowels(s: string): string {
   const vowels: Set<string> = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
   const chars: string[] = s.split('');
@@ -145,4 +153,8 @@ export function reverseVowels(s: string): string {
   }
 
   return chars.join('');
+}
+
+export function reverseWords(s: string): string {
+  return s.trim().split(/\s+/).reverse().join(' ');
 }
