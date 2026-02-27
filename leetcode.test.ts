@@ -4,7 +4,8 @@ import {
   kidsWithCandies,
   canPlaceFlowers,
   reverseVowels,
-  reverseWords
+  reverseWords,
+  productExceptSelf
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -94,4 +95,15 @@ describe('reverseWords', () => {
     const result = reverseWords("a good   example");
     expect(result).toBe("example good a");
   });
-})
+});
+
+describe('productExceptSelf', () => {
+  test('should return [24,12,8,6] from nums [1,2,3,4]', () => {
+    const result = productExceptSelf([1,2,3,4]);
+    expect(result).toEqual([24,12,8,6]);
+  });
+  test('should return [0,0,9,0,0] from nums [-1,1,0,-3,3]', () => {
+    const result = productExceptSelf([-1,1,0,-3,3]);
+    expect(result).toEqual([0,0,9,0,0]);
+  });
+});

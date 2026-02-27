@@ -155,6 +155,53 @@ export function reverseVowels(s: string): string {
   return chars.join('');
 }
 
+// Analysis - Reverse Words in a String
+// The problem asks us to reverse the order of words in a given string.
+// Key observations:
+// 1. We can split the string into words using whitespace as a delimiter.
+// 2. We can reverse the array of words and then join them back into a string.
+// 3. We should also trim the input string to remove leading and trailing whitespace, and handle multiple spaces between words.
+// Time Complexity: O(n) - we traverse the string to split and join
+// Space Complexity: O(n) - we use an array to store words
 export function reverseWords(s: string): string {
   return s.trim().split(/\s+/).reverse().join(' ');
+}
+
+// Analysis - Product of Array Except Self
+// The problem asks us to return an array where each element at index i is the product of all elements in the input array except the one at index i.
+// Key observations:
+// 1. We can calculate the product of all elements to the left of each index and store it in an output array.
+// 2. We can then calculate the product of all elements to the right of each index and multiply it with the left product in the output array.
+// 3. We can do this in two passes without using division, which is important if there are zeros in the input array.
+// Time Complexity: O(n) - we traverse the array twice
+// Space Complexity: O(n) - we use an output array to store results
+export function productExceptSelf(nums: number[]): number[] {
+  const n = nums.length;
+  const answer: number[] = new Array(n).fill(1);
+
+  // Pass 1: Fill answer[i] with product of all elements to the LEFT of i
+  // we call this prefix product.
+  // The goal is to collect "everything to the left" of each index, 
+  // so that later we can multiply it by "everything to the right" 
+  // to get the product of all elements except itself.
+  let prefix = 1;
+  for (let i = 0; i < n; i++) {
+      answer[i] = prefix;
+      prefix *= nums[i];
+  }
+
+  // Pass 2: Multiply answer[i] by the product of all elements to the RIGHT of i
+  // we call this suffix product.
+  // The goal is to collect "everything to the right" of each index,
+  // so that when we multiply it with the prefix product, we get the product of all elements except itself.
+  let suffix = 1;
+  for (let i = n - 1; i >= 0; i--) {
+      answer[i] *= suffix;
+      answer[i] += 0; 
+      suffix *= nums[i];
+  }
+
+  // It's possible to for javascript to return -0, 
+  // which is not a valid output for this problem.
+  return answer.map(val => val === 0 ? 0 : val);
 }
