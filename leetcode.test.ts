@@ -5,7 +5,8 @@ import {
   canPlaceFlowers,
   reverseVowels,
   reverseWords,
-  productExceptSelf
+  productExceptSelf,
+  increasingTriplet
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -107,3 +108,22 @@ describe('productExceptSelf', () => {
     expect(result).toEqual([0,0,9,0,0]);
   });
 });
+
+describe('increasingTriplet', () => {
+  test('should return true for nums [1,2,3,4,5]', () => {
+    const result = increasingTriplet([1,2,3,4,5]);
+    expect(result).toBe(true);
+  });
+  test('should return false for nums [5,4,3,2,1]', () => {
+    const result = increasingTriplet([5,4,3,2,1]);
+    expect(result).toBe(false);
+  });
+  test('should return true for nums [2,1,5,0,4,6]', () => {
+    const result = increasingTriplet([2,1,5,0,4,6]);
+    expect(result).toBe(true);
+  });
+  test('should return false for nums [1,1,1,1,1,1]', () => {
+    const result = increasingTriplet([1,1,1,1,1,1]);
+    expect(result).toBe(false);
+  })
+})

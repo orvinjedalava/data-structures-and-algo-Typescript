@@ -205,3 +205,36 @@ export function productExceptSelf(nums: number[]): number[] {
   // which is not a valid output for this problem.
   return answer.map(val => val === 0 ? 0 : val);
 }
+
+/*
+  Analysis - Increasing Triplet Subsequence
+  
+  We maintain two variables:
+  - first: the smallest value seen so far
+  - second: the smallest value seen that is greater than 'first'
+  
+  If we find any number greater than 'second', a valid triplet exists.
+  
+  Even if 'first' is updated later in the array (after 'second' was set),
+  'second' being set guarantees a valid (first, second) pair existed earlier,
+  so any number > 'second' completes the triplet.
+  
+  Time Complexity: O(n) - single pass through the array
+  Space Complexity: O(1) - only two variables used
+*/
+export function increasingTriplet(nums: number[]): boolean {
+  let first = Infinity;
+  let second = Infinity;
+
+  for (const num of nums) {
+    if (num <= first) {
+      first = num;         // New smallest value
+    } else if (num <= second) {
+      second = num;        // New second smallest (num > first)
+    } else {
+      return true;         // num > second > first — triplet found!
+    }
+  }
+
+  return false;
+};
