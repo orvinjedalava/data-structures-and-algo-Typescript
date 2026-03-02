@@ -238,3 +238,33 @@ export function increasingTriplet(nums: number[]): boolean {
 
   return false;
 };
+
+export function compress(chars: string[]): number {
+  let write = 0;  // Position to write compressed chars
+    let read = 0;   // Position to read from
+
+    while (read < chars.length) {
+        const currentChar = chars[read];
+        let count = 0;
+
+        // Count consecutive repeating characters
+        while (read < chars.length && chars[read] === currentChar) {
+            read++;
+            count++;
+        }
+
+        // Write the character
+        chars[write++] = currentChar;
+
+        // Write count only if greater than 1
+        if (count > 1) {
+            // Handle multi-digit counts (e.g., 12 -> '1', '2')
+            const countStr = count.toString();
+            for (const digit of countStr) {
+                chars[write++] = digit;
+            }
+        }
+    }
+
+    return write;
+}

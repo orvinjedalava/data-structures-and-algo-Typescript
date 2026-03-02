@@ -6,7 +6,8 @@ import {
   reverseVowels,
   reverseWords,
   productExceptSelf,
-  increasingTriplet
+  increasingTriplet,
+  compress
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -125,5 +126,21 @@ describe('increasingTriplet', () => {
   test('should return false for nums [1,1,1,1,1,1]', () => {
     const result = increasingTriplet([1,1,1,1,1,1]);
     expect(result).toBe(false);
-  })
+  });
+  
+});
+
+describe('compress', () => {
+  test('should return 6 for chars ["a","a","b","b","c","c","c"]', () => {
+    const result = compress(["a","a","b","b","c","c","c"]);
+    expect(result).toBe(6);
+  });
+  test('should return 1 for chars ["a"]', () => {
+    const result = compress(["a"]);
+    expect(result).toBe(1);
+  });
+  test('should return 4 for chars ["a","b","b","b","b","b","b","b","b","b","b","b"]', () => {
+    const result = compress(["a","b","b","b","b","b","b","b","b","b","b","b"]);
+    expect(result).toBe(4);
+  });
 })
