@@ -268,3 +268,35 @@ export function compress(chars: string[]): number {
 
     return write;
 }
+
+/* 
+  Use a two-pointer approach: one pointer reads the array, the other tracks where the next non-zero should go.
+  * Write marks the next slot where a non-zero should end up.
+  * Read scans everything.
+  * Whenever read sees non-zero, swap it into write and move write forward.
+  * Zeros naturally get pushed to the right
+*/
+export function moveZeroes(nums: number[]): void {
+  let write = 0;
+
+  for (let read = 0; read < nums.length; read++) {
+    if (nums[read] !== 0) {
+      [nums[write], nums[read]] = [nums[read], nums[write]];
+      write++;
+    }
+  }
+}
+
+export function isSubsequence(s: string, t: string): boolean {
+  let i = 0; // pointer for s
+  let j = 0; // pointer for t
+
+  while (i < s.length && j < t.length) {
+    if (s[i] === t[j]) {
+      i++;
+    }
+    j++;
+  }
+
+  return i === s.length;
+}

@@ -7,7 +7,9 @@ import {
   reverseWords,
   productExceptSelf,
   increasingTriplet,
-  compress
+  compress,
+  moveZeroes,
+  isSubsequence
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -144,3 +146,27 @@ describe('compress', () => {
     expect(result).toBe(4);
   });
 })
+
+describe('moveZeroes', () => {
+  test('should return [1,3,12,0,0] for nums [0,1,0,3,12]', () => {
+    const nums = [0,1,0,3,12];
+    const result = moveZeroes(nums);
+    expect(nums).toEqual([1,3,12,0,0]);
+  });
+  test('should return [0] for nums [0]', () => {
+    const nums = [0];
+    const result = moveZeroes(nums);
+    expect(nums).toEqual([0]);
+  })
+})
+
+describe('isSubsequence', () => {
+  test('should return true for s "abc" and t "ahbgdc"', () => {
+    const result = isSubsequence("abc", "ahbgdc");
+    expect(result).toBe(true);
+  });
+  test('should return false for s "axc" and t "ahbgdc"', () => {
+    const result = isSubsequence("axc", "ahbgdc");
+    expect(result).toBe(false);
+  });
+});
