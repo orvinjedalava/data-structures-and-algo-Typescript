@@ -300,3 +300,32 @@ export function isSubsequence(s: string, t: string): boolean {
 
   return i === s.length;
 }
+
+export function maxArea(height: number[]): number {
+  // Two pointers start at the widest possible container.
+  // We then move inward, trying to find a taller wall while width shrinks.
+  let left = 0;
+  let right = height.length - 1;
+  let bestArea = 0;
+
+  while (left < right) {
+    const width = right - left;
+    const containerHeight = Math.min(height[left], height[right]);
+    const area = width * containerHeight;
+
+    // Keep track of the maximum area seen so far.
+    if (area > bestArea) {
+      bestArea = area;
+    }
+
+    // Move the shorter wall because it limits the current area.
+    // Moving the taller wall cannot increase height limit for this width.
+    if (height[left] <= height[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return bestArea;
+}

@@ -9,7 +9,8 @@ import {
   increasingTriplet,
   compress,
   moveZeroes,
-  isSubsequence
+  isSubsequence,
+  maxArea
 } from './leetcode';
 
 describe('mergeAlternately', () => {
@@ -168,5 +169,22 @@ describe('isSubsequence', () => {
   test('should return false for s "axc" and t "ahbgdc"', () => {
     const result = isSubsequence("axc", "ahbgdc");
     expect(result).toBe(false);
+  });
+});
+
+describe('maxArea', () => {
+  test('should return 49 for height [1,8,6,2,5,4,8,3,7]', () => {
+    const result = maxArea([1,8,6,2,5,4,8,3,7]);
+    expect(result).toBe(49);
+  });
+
+  test('should return 1 for height [1,1]', () => {
+    const result = maxArea([1,1]);
+    expect(result).toBe(1);
+  });
+
+  test('should return 16 for height [4,3,2,1,4]', () => {
+    const result = maxArea([4,3,2,1,4]);
+    expect(result).toBe(16);
   });
 });
