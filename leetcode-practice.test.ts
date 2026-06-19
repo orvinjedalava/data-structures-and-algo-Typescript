@@ -1,6 +1,7 @@
 import { describe, it, expect, test } from '@jest/globals';
 import {
-	mergeAlternately
+	mergeAlternately,
+  gcdOfStrings
 
 } from './leetcode-practice'
 
@@ -9,4 +10,23 @@ describe('mergeAlternately', () => {
 		const result = mergeAlternately("abc", "pqr");
 		expect(result).toBe("apbqcr");
 	});
+});
+
+describe('gcdOfStrings', () => {
+  test('should return "ABC" for "ABCABC" and "ABC"', () => {
+    const result = gcdOfStrings("ABCABC", "ABC");
+    expect(result).toBe("ABC");
+  });
+  test('should return "AB" for "ABABAB" and "AB"', () => {
+    const result = gcdOfStrings("ABABAB", "AB");
+    expect(result).toBe("AB");
+  });
+  test('should return "" for "LEET" and "CODE"', () => {
+    const result = gcdOfStrings("LEET", "CODE");
+    expect(result).toBe("");
+  })
+  test('should return "" for "AAAAAB" and "AAA"', () => {
+    const result = gcdOfStrings("AAAAB", "AAA");
+    expect(result).toBe("");
+  })
 });

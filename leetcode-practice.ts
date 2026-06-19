@@ -13,3 +13,26 @@ export function mergeAlternately(word1: string, word2: string): string {
 
 	return result.join('');
 }
+
+export function gcdOfStrings(str1: string, str2: string): string {
+  
+  // If concatenating in different orders gives different results,
+  // there's no common divisor
+  if (str1 + str2 !== str2 + str1) {
+      return "";
+  }
+
+  // Helper function to calculate GCD of two numbers
+  function gcd(a: number, b: number): number {
+      if (b === 0) {
+          return a;
+      }
+      return gcd(b, a % b);
+  }
+
+  // The length of the GCD string is the GCD of both string lengths
+  const gcdLength = gcd(str1.length, str2.length);
+
+  // return the substring of 0 to gcdlength
+  return str1.substring(0, gcdLength);
+}
