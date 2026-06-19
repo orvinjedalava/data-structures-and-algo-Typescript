@@ -17,3 +17,12 @@ def gcd_of_strings(str1: str, str2: str) -> str:
 
     gcd_length = gcd(len(str1), len(str2))
     return str1[:gcd_length]
+
+def kids_with_candies(candies: list[int], extra_candies: int) -> list[bool]:
+    max_candies: int = max(candies)
+    result: list[bool] = [False] * len(candies)
+
+    for i in range(len(candies)):
+        result[i] = candies[i] + extra_candies >= max_candies
+
+    return result
