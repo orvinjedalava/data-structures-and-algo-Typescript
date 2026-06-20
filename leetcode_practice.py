@@ -26,3 +26,27 @@ def kids_with_candies(candies: list[int], extra_candies: int) -> list[bool]:
         result[i] = candies[i] + extra_candies >= max_candies
 
     return result
+
+def can_place_flowers(flowerbed: list[int], n: int) -> bool:
+    if n == 0:
+        return True
+
+    planted = 0
+
+    for i in range(len(flowerbed)):
+        if flowerbed[i] == 0:
+            left_empty = i == 0 or flowerbed[i - 1] == 0
+            if not left_empty:
+                continue
+
+            right_empty = i == len(flowerbed) - 1 or flowerbed[i + 1] == 0
+            if not right_empty:
+                continue
+
+            flowerbed[i] = 1
+            planted += 1
+
+            if planted >= n:
+                return True
+
+    return planted >= n
