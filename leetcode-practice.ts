@@ -53,3 +53,39 @@ export function kidsWithCandies(candies: number[], extraCandies: number): boolea
 
   return result;
 };
+
+export function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+  // Early return if no flowers need to be planted
+  if (n === 0) {
+      return true;
+  }
+  
+  let planted = 0;
+  
+  for (let i = 0; i < flowerbed.length; i++) {
+    // Check if current position is empty
+    if (flowerbed[i] === 0) {
+        // Check left neighbor (empty or out of bounds)
+        const leftEmpty = i === 0 || flowerbed[i - 1] === 0;
+        if (!leftEmpty) 
+          continue;
+        
+        // Check right neighbor (empty or out of bounds)
+        const rightEmpty = i === flowerbed.length - 1 || flowerbed[i + 1] === 0;
+        if (!rightEmpty)
+          continue;
+        
+        // If both neighbors are empty (or don't exist), we can plant here
+        flowerbed[i] = 1; // Plant the flower
+        planted++;
+        
+        // Early exit if we've planted enough flowers
+        if (planted >= n) {
+            return true;
+        }
+    }
+  }
+  
+  // Check if we planted enough flowers
+  return planted >= n;
+};
