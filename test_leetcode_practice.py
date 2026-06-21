@@ -2,7 +2,8 @@ from leetcode_practice import (
     merge_alternately,
     gcd_of_strings,
     kids_with_candies,
-    can_place_flowers
+    can_place_flowers,
+    reverse_vowels
 )
 
 def test_merge_alternately_basic():
@@ -22,3 +23,7 @@ def test_kids_with_candies_cases():
 def test_can_place_flowers_cases():
     assert can_place_flowers([1, 0, 0, 0, 1], 1) is True
     assert can_place_flowers([1, 0, 0, 0, 1], 2) is False
+
+def test_reverse_vowels_cases():
+    assert reverse_vowels("IceCreAm") == "AceCreIm"
+    assert reverse_vowels("leetcode") == "leotcede"
