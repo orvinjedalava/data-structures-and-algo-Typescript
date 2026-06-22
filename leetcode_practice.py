@@ -70,3 +70,6 @@ def reverse_vowels(s: str) -> str:
             right -= 1
 
     return "".join(chars)
+
+def reverse_words(s: str) -> str:
+    return " ".join(s.split()[::-1])

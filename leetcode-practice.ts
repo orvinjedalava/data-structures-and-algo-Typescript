@@ -115,3 +115,7 @@ export function reverseVowels(s: string): string {
 
   return chars.join('');
 }
+
+export function reverseWords(s: string): string {
+  return s.trim().split(/\s+/).reverse().join(' ');
+}

@@ -3,7 +3,8 @@ from leetcode_practice import (
     gcd_of_strings,
     kids_with_candies,
     can_place_flowers,
-    reverse_vowels
+    reverse_vowels,
+    reverse_words
 )
 
 def test_merge_alternately_basic():
@@ -27,3 +28,8 @@ def test_can_place_flowers_cases():
 def test_reverse_vowels_cases():
     assert reverse_vowels("IceCreAm") == "AceCreIm"
     assert reverse_vowels("leetcode") == "leotcede"
+
+def test_reverse_words_cases():
+    assert reverse_words("the sky is blue") == "blue is sky the"
+    assert reverse_words("   hello world   ") == "world hello"
+    assert reverse_words("a good   example") == "example good a"
