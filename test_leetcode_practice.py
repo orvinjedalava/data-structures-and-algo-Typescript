@@ -4,7 +4,8 @@ from leetcode_practice import (
     kids_with_candies,
     can_place_flowers,
     reverse_vowels,
-    reverse_words
+    reverse_words,
+    product_except_self
 )
 
 def test_merge_alternately_basic():
@@ -33,3 +34,7 @@ def test_reverse_words_cases():
     assert reverse_words("the sky is blue") == "blue is sky the"
     assert reverse_words("   hello world   ") == "world hello"
     assert reverse_words("a good   example") == "example good a"
+
+def test_product_except_self_cases():
+    assert product_except_self([1, 2, 3, 4]) == [24, 12, 8, 6]
+    assert product_except_self([-1, 1, 0, -3, 3]) == [0, 0, 9, 0, 0]
