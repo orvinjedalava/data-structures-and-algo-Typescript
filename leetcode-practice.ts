@@ -121,19 +121,19 @@ export function reverseWords(s: string): string {
 }
 
 export function productExceptSelf(nums: number[]): number[] {
-  const n = nums.length;
+  const n: number = nums.length;
   const answer: number[] = new Array(n).fill(1);
 
-  let prefix = 1;
-  for (let i = 0; i < n; i++) {
+  let prefix: number = 1;
+  for (let i: number = 0; i < n; i++) {
       answer[i] = prefix;
       prefix *= nums[i];
   }
 
-  let suffix = 1;
+  let suffix: number = 1;
   for (let i = n - 1; i >= 0; i--) {
       answer[i] *= suffix;
-      answer[i] += 0; 
+      // answer[i] += 0; 
       suffix *= nums[i];
   }
 
